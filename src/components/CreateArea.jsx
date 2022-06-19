@@ -6,7 +6,7 @@ import Zoom from '@material-ui/core/Zoom';
 function CreateArea(props) {
 
   const[isExpanded, setExpanded] = useState(false);
-  const [note, setNote] = useState({
+  const [task, setTask] = useState({
     title: "",
     content: ""
   });
@@ -14,17 +14,17 @@ function CreateArea(props) {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setNote(prevNote => {
+    setTask(prevTask => {
       return {
-        ...prevNote,
+        ...prevTask,
         [name]: value
       };
     });
   }
 
-  function submitNote(event) {
-    props.onAdd(note);
-    setNote({
+  function submitTask(event) {
+    props.onAdd(task);
+    setTask({
       title: "",
       content: ""
     });
@@ -37,11 +37,11 @@ function CreateArea(props) {
 
   return (
     <div>
-      <form className="create-note">
+      <form className="create-task">
        {isExpanded ? <input
           name="title"
           onChange={handleChange}
-          value={note.title}
+          value={task.title}
           placeholder="Title"
         /> : null }
         
@@ -49,12 +49,12 @@ function CreateArea(props) {
           name="content"
           onClick ={expand}
           onChange={handleChange}
-          value={note.content}
-          placeholder="Take a note..."
+          value={task.content}
+          placeholder="Add Your Task Here"
           rows= {isExpanded ? 3 : 1}
         />
         <Zoom in = {isExpanded ? true : false}>
-        <Fab onClick={submitNote}><AddIcon /></Fab>
+        <Fab onClick={submitTask}><AddIcon /></Fab>
         </Zoom>
       </form>
     </div>

@@ -4,7 +4,11 @@ import HighlightIcon from '@material-ui/icons/Highlight';
 function Header() {
   return (
     <header>
-      <h1><HighlightIcon />Keeper</h1>
+      <nav class="navbar">
+       <div class="container-fluid">
+        <span><h1><HighlightIcon /> Daily Task Manager</h1></span>
+       </div>
+      </nav>
     </header>
   );
 }
