@@ -23,12 +23,14 @@ function CreateArea(props) {
   }
 
   function submitTask(event) {
+    if(event.keyCode === 13 || !event.keyCode) {
     props.onAdd(task);
     setTask({
       title: "",
       content: ""
     });
     event.preventDefault();
+  }
   }
   
   function expand() {
@@ -51,10 +53,11 @@ function CreateArea(props) {
           onChange={handleChange}
           value={task.content}
           placeholder="Add Your Task Here"
+          onKeyDown={submitTask}
           rows= {isExpanded ? 3 : 1}
         />
         <Zoom in = {isExpanded ? true : false}>
-        <Fab onClick={submitTask}><AddIcon /></Fab>
+        <Fab id="add" onClick={submitTask}><AddIcon /></Fab>
         </Zoom>
       </form>
     </div>
